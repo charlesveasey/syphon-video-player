@@ -1,13 +1,313 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+GitHub Gist
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+Discover Gists
+charlesveasey
+ 
+ 
+Star 169
+ 
+Fork 48
+PUBLIC
+ adamgit / .gitignore
+Last updated 11 days ago
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+.gitignore file for Xcode4 / OS X Source projects
+Gist Detail
+Revisions 4
+Stars 169
+Forks 48
+Download Gist
+Clone this gist
+
+Embed this gist
+
+Link to this gist
+
+.gitignore
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+#########################
+# .gitignore file for Xcode4 / OS X Source projects
+#
+# Version 2.0
+#    For latest version, see: http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects
+#
+# 2013 updates:
+#    - fixed the broken "save personal Schemes"
+#
+# NB: if you are storing "built" products, this WILL NOT WORK,
+#   and you should use a different .gitignore (or none at all)
+# This file is for SOURCE projects, where there are many extra
+#   files that we want to exclude
+#
+#########################
+ 
+#####
+# OS X temporary files that should never be committed
+ 
+.DS_Store
+*.swp
+*.lock
+profile
+ 
+ 
+####
+# Xcode temporary files that should never be committed
+# 
+# NB: NIB/XIB files still exist even on Storyboard projects, so we want this...
+ 
+*~.nib
+ 
+ 
+####
+# Xcode build files -
+#
+# NB: slash on the end, so we only remove the FOLDER, not any files that were badly named "DerivedData"
+ 
+DerivedData/
+ 
+# NB: slash on the end, so we only remove the FOLDER, not any files that were badly named "build"
+ 
+build/
+ 
+ 
+#####
+# Xcode private settings (window sizes, bookmarks, breakpoints, custom executables, smart groups)
+#
+# This is complicated:
+#
+# SOMETIMES you need to put this file in version control.
+# Apple designed it poorly - if you use "custom executables", they are
+#  saved in this file.
+# 99% of projects do NOT use those, so they do NOT want to version control this file.
+#  ..but if you're in the 1%, comment out the line "*.pbxuser"
+ 
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+#    NB: also, whitelist the default ones, some projects need to use these
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+ 
+ 
+####
+# Xcode 4 - semi-personal settings
+#
+#
+# OPTION 1: ---------------------------------
+#     throw away ALL personal settings (including custom schemes!
+#     - unless they are "shared")
+#
+# NB: this is exclusive with OPTION 2 below
+xcuserdata
+ 
+# OPTION 2: ---------------------------------
+#     get rid of ALL personal settings, but KEEP SOME OF THEM
+#     - NB: you must manually uncomment the bits you want to keep
+#
+# NB: this is exclusive with OPTION 1 above
+#
+#xcuserdata/**/*
+ 
+#     (requires option 2 above): Personal Schemes
+#
+#!xcuserdata/**/xcschemes/*
+ 
+####
+# XCode 4 workspaces - more detailed
+#
+# Workspaces are important! They are a core feature of Xcode - don't exclude them :)
+#
+# Workspace layout is quite spammy. For reference:
+#
+# /(root)/
+#   /(project-name).xcodeproj/
+#     project.pbxproj
+#     /project.xcworkspace/
+#       contents.xcworkspacedata
+#       /xcuserdata/
+#         /(your name)/xcuserdatad/
+#           UserInterfaceState.xcuserstate
+#     /xcsshareddata/
+#       /xcschemes/
+#         (shared scheme name).xcscheme
+#     /xcuserdata/
+#       /(your name)/xcuserdatad/
+#         (private scheme).xcscheme
+#         xcschememanagement.plist
+#
+#
+ 
+####
+# Xcode 4 - Deprecated classes
+#
+# Allegedly, if you manually "deprecate" your classes, they get moved here.
+#
+# We're using source-control, so this is a "feature" that we do not want!
+ 
+*.moved-aside
+ 
+ 
+####
+# UNKNOWN: recommended by others, but I can't discover what these files are
+#
+# ...none. Everything is now explained.
+
+ adamgit commented 4 months ago
+Done. Sorry, forgot to add at the time
+
+ marzapower commented 3 months ago
+I suggest adding these lines, for those who currently use CocoaPods:
+
+Pods/
+Podfile.lock
+
+ adamgit commented 3 months ago
+@marzapower thanks, updated with your comments from the SO answer
+
+ rais38 commented 23 days ago
+Podfile.lock contains the pod commit SHAs that just got installed so that you can easily restore that exact environment later on other machines (very important in teams). I think that this file must be removed from .gitignore
+
+ matej commented 20 days ago
+I agree with @rais38, Podfile.lock should not be ignored any longer. See this issue for details.
+
+It actually even needs to be explicitly allowed (by changing Podfile.lock to !Podfile.lock), so it does not get added by the *.lock declaration.
+
+ tvon commented 11 days ago
+ on removing the Podfile.lock (and the *.lock line, Gemfile.lock is important if it exists).
+
+Write Preview Comments are parsed with GitHub Flavored Markdown
+
+Add Comment
+© 2013 GitHub Inc. All rights reserved.
+The GitHub Blog Support Contact
